@@ -14,3 +14,4 @@ class MoveWindowToLeftMonitor(EventHandlerBase):
 
     def do_handle(self):
         simulate_super_shift_left_arrow()
+        print("!!!!!!")

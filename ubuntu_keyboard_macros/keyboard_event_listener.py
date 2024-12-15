@@ -19,6 +19,9 @@ class KeyboardEventListener:
         self.input_device = InputDevice(self.listened_keyboard_event_file)
         self.combination_trigger_key = self.settings_yaml["combination_trigger_key"]
         self.rich_printer = RichPrinter()
+        self.event_handlers_dict = {
+            "KEY_LEFT": MoveWindowToLeftMonitor,
+        }
 
     def detect_key_combination(self):
         """
@@ -34,13 +37,12 @@ class KeyboardEventListener:
                 if key_event.keystate == key_event.key_down:
                     print(f"[DEBUG] - Key Down: {keycode}")
 
-                    if last_key == self.combination_trigger_key and keycode == "KEY_LEFT":  # CTK + KEY_LEFT
-                        self.rich_printer("[INFO] - Detected KEY_PROG1 + KEY_LEFT combination!")
-                        MoveWindowToLeftMonitor().do_handle()
-
-                    elif last_key == self.combination_trigger_key and keycode == "KEY_RIGHT":  # CTK + KEY_RIGHT
-                        self.rich_printer("[INFO] - Detected KEY_PROG1 + KEY_RIGHT combination!")
-                        # evoke the according EventHandler
+                    if last_key == self.combination_trigger_key and keycode in self.event_handlers_dict:
+                        self.rich_printer(
+                            f"[*INFO*] - detected key combination: {self.combination_trigger_key} + {keycode}"
+                        )
+                        handler = self.event_handlers_dict[keycode]()
+                        handler.do_handle()
 
                     last_key = keycode
 
