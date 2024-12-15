@@ -5,13 +5,26 @@ Create Date: 2024-12-15
 """
 
 import pathlib
-from typing import Optional
-from pynput import keyboard
-from pynput.keyboard import Key, KeyCode
 
+from ubuntu_keyboard_macros import KeyboardEventListener
 from ubuntu_keyboard_macros.ult.file_tool import create_file_from_template, read_yaml
-from ubuntu_keyboard_macros.ult.keycode_tool import xev_keycode_to_keysym
 
-class KeyboardEventListener:
-    def __init__(self,
-                 settings_fp:Optional[pathlib.Path] = None):
+THIS_FILE_PATH = pathlib.Path(__file__).absolute().resolve()
+THIS_FILE_PARENT_DIR = THIS_FILE_PATH.parent
+PROJECT_DIR = THIS_FILE_PARENT_DIR
+
+
+def _main():
+    kbel = KeyboardEventListener(settings_yaml)
+    kbel.launch()
+
+
+if __name__ == "__main__":
+    SETTING_TPL_FILE = PROJECT_DIR / "settings-templates" / "settings.yaml"
+    SETTING_FILE = PROJECT_DIR / "settings" / "settings.yaml"
+
+    if not SETTING_FILE.is_file():
+        create_file_from_template(SETTING_FILE, SETTING_TPL_FILE)
+
+    settings_yaml = read_yaml(SETTING_FILE)
+    _main()

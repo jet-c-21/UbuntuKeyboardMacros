@@ -12,3 +12,10 @@ keyboard macro scripts for ubuntu
 cp ~/my_home/UbuntuKeyboardMacros/.xbindkeysrc_src ~/.xbindkeysrc && \
 xbindkeys --poll-rc
 ```
+
+## clear xbindkeys config
+
+```shell
+: > ~/.xbindkeysrc && xbindkeys --poll-rc
+```
+
