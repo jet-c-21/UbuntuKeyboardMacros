@@ -9,16 +9,19 @@ PYTHON_BIN=~/miniconda3/bin/python3
 # Path to your Python script
 PYTHON_SCRIPT=~/my_home/UbuntuKeyboardMacros/py_scripts/move_window_to_left_monitor.py
 
-# Log file path
-LOG_FILE=~/my_home/UbuntuKeyboardMacros/logs/move_window_to_left_monitor.log
-
-# Create the logs directory if it doesn't exist
-mkdir -p ~/my_home/UbuntuKeyboardMacros/logs
+# Log file path (only define when DEBUG is true)
+if [ "$DEBUG" = true ]; then
+    LOG_FILE=~/my_home/UbuntuKeyboardMacros/logs/move_window_to_left_monitor.log
+    # Create the logs directory if it doesn't exist
+    mkdir -p ~/my_home/UbuntuKeyboardMacros/logs
+else
+    LOG_FILE=/dev/null  # Discard logs when DEBUG is false
+fi
 
 # Function to log debug messages
 log_debug() {
     if [ "$DEBUG" = true ]; then
-        echo "$(date '+%Y-%m-%d %H:%M:%S'): $1" >> $LOG_FILE
+        echo "$(date '+%Y-%m-%d %H:%M:%S'): $1" >> "$LOG_FILE"
     fi
 }
 
@@ -26,7 +29,7 @@ log_debug() {
 log_debug "Starting move_window_to_left_monitor script"
 
 # Run the Python script and log its output
-$PYTHON_BIN $PYTHON_SCRIPT >> $LOG_FILE 2>&1
+$PYTHON_BIN "$PYTHON_SCRIPT" >> "$LOG_FILE" 2>&1
 EXIT_CODE=$?
 
 # Log the success or failure of the Python script execution
