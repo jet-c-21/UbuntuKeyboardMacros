@@ -2,6 +2,10 @@
 
 keyboard macro scripts for ubuntu
 
+## Set up your `mod3` key
+
+(TODO: add documentation)
+
 ## update xbindkeys with config
 
 ```shell
