@@ -1,3 +1,7 @@
+# File Name: .xbindkeysrc_src
+
 # Bind Mod3 + LeftArrow to move the window to the left monitor
 "~/my_home/UbuntuKeyboardMacros/scripts/move_window_to_left_monitor.sh"
     mod3 + Left
+
+# can I write log for this cuz it's not working
