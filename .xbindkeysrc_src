@@ -4,3 +4,6 @@
 "~/my_home/UbuntuKeyboardMacros/scripts/move_window_to_left_monitor.sh"
     mod3 + Left
 
+# Bind Mod3 + RightArrow to move the window to the right monitor
+"~/my_home/UbuntuKeyboardMacros/scripts/move_window_to_right_monitor.sh"
+    mod3 + Right
