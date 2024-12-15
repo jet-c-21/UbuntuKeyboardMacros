@@ -8,6 +8,7 @@ from typing import Dict
 
 from evdev import InputDevice, categorize, ecodes
 
+from ubuntu_keyboard_macros.event_handler import MoveWindowToLeftMonitor
 from ubuntu_keyboard_macros.ult.console_tool import RichPrinter
 
 
@@ -33,14 +34,13 @@ class KeyboardEventListener:
                 if key_event.keystate == key_event.key_down:
                     print(f"[DEBUG] - Key Down: {keycode}")
 
-                    if last_key == self.combination_trigger_key and keycode == "KEY_LEFT": # CTK + KEY_LEFT
+                    if last_key == self.combination_trigger_key and keycode == "KEY_LEFT":  # CTK + KEY_LEFT
                         self.rich_printer("[INFO] - Detected KEY_PROG1 + KEY_LEFT combination!")
-                        # evoke the according EventHandler
+                        MoveWindowToLeftMonitor().do_handle()
 
-                    elif last_key == self.combination_trigger_key and keycode == "KEY_RIGHT": # CTK + KEY_RIGHT
+                    elif last_key == self.combination_trigger_key and keycode == "KEY_RIGHT":  # CTK + KEY_RIGHT
                         self.rich_printer("[INFO] - Detected KEY_PROG1 + KEY_RIGHT combination!")
                         # evoke the according EventHandler
-
 
                     last_key = keycode
 
