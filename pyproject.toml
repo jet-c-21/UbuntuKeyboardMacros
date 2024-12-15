@@ -7,6 +7,7 @@ authors = [{ name = "Jet C. GitHub: @jet-c-21" }]
 
 dependencies = [
     "evdev>=1.7.1",
+    "keyboard>=0.13.5",
     "pynput>=1.7",
     "python-xlib>=0.31",
     "pyyaml>=6.0.2",
@@ -19,10 +20,6 @@ build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
 packages = ["ubuntu_keyboard_macros"]  # Explicitly specify your package
-include_package_data = true            # Include non-Python files if specified in MANIFEST.in
-
-[tool.setuptools.package-data]
-"ubuntu_keyboard_macros" = ["*.yaml", "*.json"]  # Include additional package files
 
 [tool.ruff]
 line-length = 120

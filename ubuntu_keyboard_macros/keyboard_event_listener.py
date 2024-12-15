@@ -3,12 +3,20 @@ Author: Jet C.
 GitHub: https://github.com/jet-c-21
 Create Date: 2024-12-15
 """
-
+import subprocess
 from typing import Dict
 
 from evdev import InputDevice, categorize, ecodes
 
-from ubuntu_keyboard_macros.event_handler import MoveWindowToLeftMonitor
+from ubuntu_keyboard_macros.event_handler import (
+    EventHandlerBase,
+    MoveWindowToLeftMonitor,
+    MoveWindowToRightMonitor,
+)
+from ubuntu_keyboard_macros.macros import (
+    move_window_to_left_monitor,
+    move_window_to_right_monitor,
+)
 from ubuntu_keyboard_macros.ult.console_tool import RichPrinter
 
 
@@ -20,7 +28,8 @@ class KeyboardEventListener:
         self.combination_trigger_key = self.settings_yaml["combination_trigger_key"]
         self.rich_printer = RichPrinter()
         self.event_handlers_dict = {
-            "KEY_LEFT": MoveWindowToLeftMonitor,
+            "KEY_LEFT": move_window_to_left_monitor.__file__,
+            "KEY_RIGHT": move_window_to_right_monitor.__file__,
         }
 
     def detect_key_combination(self):
@@ -41,8 +50,12 @@ class KeyboardEventListener:
                         self.rich_printer(
                             f"[*INFO*] - detected key combination: {self.combination_trigger_key} + {keycode}"
                         )
-                        handler = self.event_handlers_dict[keycode]()
-                        handler.do_handle()
+
+                        handle_script = self.event_handlers_dict[keycode]
+                        subprocess.run(
+                            ["python3", handle_script],
+                            check=True,
+                        )
 
                     last_key = keycode
 

@@ -1,23 +1,25 @@
 from pynput.keyboard import Controller, Key
 
 
-def move_window_to_right_monitor():
-    """Moves the current window to the right monitor using Super + Shift + RightArrow."""
+def simulate_super_shift_right_arrow(debug: bool = True):
     keyboard = Controller()
-
-    # Log the start of the operation
-    print("Moving window to the right monitor...")
-
-    # Simulate pressing Super + Shift + RightArrow
-    keyboard.press(Key.cmd)  # Super/Windows key
-    keyboard.press(Key.shift)
+    # Press and hold Super + Shift
+    keyboard.press(Key.cmd)  # Super key
+    keyboard.press(Key.shift)  # Shift key
     keyboard.press(Key.right)
+
+    if debug:
+        msg = f"[*DEBUG*] - pressed keys: {Key.cmd} + {Key.shift} + {Key.right}"
+        print(msg)
+
     keyboard.release(Key.right)
     keyboard.release(Key.shift)
     keyboard.release(Key.cmd)
 
-    # Log the completion of the operation
-    print("Window moved to the right monitor successfully.")
+    if debug:
+        msg = f"[*DEBUG*] - released keys: {Key.cmd} + {Key.shift} + {Key.right}"
+        print(msg)
+
 
 if __name__ == "__main__":
-    move_window_to_right_monitor()
+    simulate_super_shift_right_arrow()
