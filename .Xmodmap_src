@@ -1,0 +1,5 @@
+# Assign XF86Launch1 (X11 treat KEY_PROG1 as XF86Launch1) symbol to keycode 156 (KEY_COMPOSE in my case)
+keycode 156 = XF86Launch1
+
+# Add XF86Launch1 to mod3
+add mod3 = XF86Launch1

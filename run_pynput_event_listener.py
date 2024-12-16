@@ -14,12 +14,14 @@ THIS_FILE_PARENT_DIR = THIS_FILE_PATH.parent
 PROJECT_DIR = THIS_FILE_PARENT_DIR
 
 
-from ubuntu_keyboard_macros import EventDeviceListener
 from pynput.keyboard import Controller
 
+from ubuntu_keyboard_macros import PYNPUTEventListener
+
+
 def _main():
-    kbel = EventDeviceListener(settings_yaml, keyboard_controller=keyboard_controller)
-    kbel.launch()
+    pynput_el = PYNPUTEventListener(settings_yaml, keyboard_controller=keyboard_controller)
+    pynput_el.launch()
 
 
 if __name__ == "__main__":

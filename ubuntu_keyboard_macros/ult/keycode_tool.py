@@ -9,12 +9,24 @@ from typing import Union
 from Xlib import display
 
 
-def xev_keycode_to_keysym(keycode) -> Union[str, None]:
+def xev_keycode_to_keysym(keycode, return_decimal_keysym=False) -> Union[Union[str, int], None]:
+    """
+
+    decimal keycode to hex keysym
+
+    :param keycode:
+    :return:
+    """
     disp = display.Display()
     with contextlib.suppress(Exception):
         keysym = hex(disp.keycode_to_keysym(keycode, 0))
     disp.close()
-    return keysym
+
+    if return_decimal_keysym:
+        return int(keysym, 16)
+
+    else:
+        return keysym
 
 if __name__ == "__main__":
     _keysym = xev_keycode_to_keysym(156)

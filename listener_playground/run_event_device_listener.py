@@ -6,16 +6,17 @@ Create Date: 2024-12-15
 
 import pathlib
 
-# from ubuntu_keyboard_macros import KeyboardEventListener
 from ubuntu_keyboard_macros.ult.file_tool import create_file_from_template, read_yaml
 
 THIS_FILE_PATH = pathlib.Path(__file__).absolute().resolve()
 THIS_FILE_PARENT_DIR = THIS_FILE_PATH.parent
-PROJECT_DIR = THIS_FILE_PARENT_DIR
+PROJECT_DIR = THIS_FILE_PARENT_DIR.parent
 
+
+from pynput.keyboard import Controller
 
 from ubuntu_keyboard_macros import EventDeviceListener
-from pynput.keyboard import Controller
+
 
 def _main():
     kbel = EventDeviceListener(settings_yaml, keyboard_controller=keyboard_controller)

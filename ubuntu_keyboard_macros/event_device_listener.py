@@ -16,8 +16,14 @@ from ubuntu_keyboard_macros.event_handler import (
 from ubuntu_keyboard_macros.ult.console_tool import RichPrinter
 
 
-class KeyboardEventListener:
+class EventDeviceListener:
     def __init__(self, settings_yaml: Dict, keyboard_controller:Controller=None):
+        """
+        Event Device (package: evdev) Listener for keyboard events.
+
+        :param settings_yaml:
+        :param keyboard_controller:
+        """
         self.settings_yaml = settings_yaml
 
         if keyboard_controller is None:
