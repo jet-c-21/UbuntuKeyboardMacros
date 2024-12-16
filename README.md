@@ -41,6 +41,14 @@ xmodmap -pm
 
 ![Reload-Xmodmap-File-Startup-Application-Example.png](https://hackmd.io/_uploads/H12_eP641l.jpg)
 
+## Quick Start
+
+```
+pip install .
+```
+```
+python3 run_pynput_event_listener.py
+```
 
 
 
