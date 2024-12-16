@@ -46,6 +46,7 @@ xmodmap -pm
 ```
 pip install .
 ```
+
 ```
 python3 run_pynput_event_listener.py
 ```
