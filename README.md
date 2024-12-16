@@ -39,7 +39,13 @@ xmodmap -pm
 
 #### you can create a Startup Application to let `xmodmap` to reload the config every boot
 
-![Reload-Xmodmap-File-Startup-Application-Example.png](https://hackmd.io/_uploads/H12_eP641l.jpg)
+![Reload-Xmodmap-File-Startup-Application-Example.png](https://hackmd.io/_uploads/HJ6R2wa41x.png)
+
+Startup Application Command
+
+```shell
+sh -c "sleep 10 && xmodmap ~/.Xmodmap"
+```
 
 ## Quick Start
 
